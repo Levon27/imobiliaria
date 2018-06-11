@@ -17,15 +17,15 @@ $app->map(['GET','POST'],'/hello/', function (Request $request, Response $respon
     $response->getBody()->write("$texto");
 	*/
     
-	
+	/*
 	$id = 2;
 	$stmt = $pdo->prepare('SELECT * FROM autenticacao WHERE id_usuario=?');
 	$stmt->execute([$id]);
 	while ($data = $stmt->fetch(PDO::FETCH_ASSOC)){
 		echo json_encode($data);
 	}
-    return $response;
-	
+  
+	*/
 	echo "guei";
 	return $response;
 });
