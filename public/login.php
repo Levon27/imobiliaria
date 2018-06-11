@@ -12,19 +12,21 @@ $app->map(['POST'],'/login/', function (Request $request, Response $response, ar
 	$auth = json_decode($request->getBody(),true);
 	$login = $auth["login"];
 	$senha = $auth["pass"];
-	echo "$login  : $senha";
+	echo "$login  : $senha ";
 	
 	$query = $pdo->prepare('SELECT * FROM autenticacao WHERE email=? AND senha=?');
 	$query->execute([$login,$senha]);
 	
 	
 	if ($data = $query->fetch(PDO::FETCH_ASSOC)){
-		echo "logando usuario";
-
+		$_SESSION["id"]  = $data["id_usuario"];
 	} else {
-		echo "usuario não encontrado";
+		echo "usuario não encontrado \n";
 	}
-
+	//session_unset();
+	session_destroy();
+	echo "$_SESSION[id]";
+	
 	return $response;
 });
 ?>
