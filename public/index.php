@@ -15,7 +15,8 @@ $app->map(['GET','POST'],'/hello/', function (Request $request, Response $respon
 	$texto = $pedido['nome'];
     $response->getBody()->write("$texto");
 	
-    */
+    
+	/*
 	$id = 1;
 	$stmt = $pdo->prepare('SELECT * FROM autenticacao');
 	$stmt->execute([]);
@@ -23,6 +24,9 @@ $app->map(['GET','POST'],'/hello/', function (Request $request, Response $respon
 		echo json_encode($data);
 	}
     return $response;
+	*/
+	echo "guei";
+	return $response;
 });
 $app->run();
 ?>
