@@ -10,7 +10,6 @@ require '../vendor/autoload.php';
 header("Content-Type: application/json");
 $app->map(['POST'],'/registrar/', function (Request $request, Response $response, array $args) {
     require_once("db.php");
-    
 	$registro = json_decode($request->getBody(),true);
 	
 	$nome = $registro["nome"];
