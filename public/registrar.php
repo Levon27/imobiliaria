@@ -1,7 +1,8 @@
 <?php
+
 if(!isset($_SESSION)) { 
     session_start(); 
-}  
+} 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -17,17 +18,16 @@ $app->map(['POST'],'/registrar/', function (Request $request, Response $response
 	$senha = $registro["senha"];
 	$tipo = $registro["tipo"];
 	
-	echo "vai preparar query";
-	//$query = $pdo->prepare('INSERT INTO autenticacao (nome,email,senha,tipo) SELECT * FROM ( SELECT ?,?,?,?) AS temp WHERE NOT EXISTS (SELECT email FROM autenticacao WHERE email=?)');
-	//$query->execute([$nome,$email,$senha,$tipo,$email]);
+	$query = $pdo->prepare('INSERT INTO autenticacao (nome,email,senha,tipo) SELECT * FROM ( SELECT ?,?,?,?) AS temp WHERE NOT EXISTS (SELECT email FROM autenticacao WHERE email=?)');
+	$query->execute([$nome,$email,$senha,$tipo,$email]);
 	
 	var_dump ($registro);
-	/* 
+	/*
 	INSERT INTO autenticacao (nome,email,senha,tipo) 
 	SELECT * FROM ( SELECT 'teste','teste@example.com','senhateste','inquilino') AS temp 
 	WHERE NOT EXISTS (SELECT email FROM autenticacao WHERE email='teste@example.com')
 	*/
+	
 	return $response;
 });
 ?>
-
