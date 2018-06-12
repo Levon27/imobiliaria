@@ -1,11 +1,13 @@
 <?php
-session_start();
+if(!isset($_SESSION)) { 
+    session_start(); 
+} 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 header("Content-Type: application/json");
-$app = new \Slim\App;
+//$app = new \Slim\App;
 $app->map(['POST'],'/login/', function (Request $request, Response $response, array $args) {
 	require_once("db.php");
 
@@ -23,9 +25,6 @@ $app->map(['POST'],'/login/', function (Request $request, Response $response, ar
 	} else {
 		echo "usuario não encontrado \n";
 	}
-	//session_unset();
-	session_destroy();
-	echo "$_SESSION[id]";
 	
 	return $response;
 });
