@@ -7,8 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 $app->map(['POST'],'/login/', function (Request $request, Response $response, array $args) {
-	require_once("db.php");
-	
+	include("db.php");
 	if (!(empty($_SESSION["id"]))){
 		echo "usuario ja logado";
 	}

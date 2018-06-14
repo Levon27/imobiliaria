@@ -15,7 +15,6 @@ require_once("logout.php");
 require_once ("db.php");
 require_once("registrar_imovel.php");
 $app->map(['GET','POST'],'/hello/', function (Request $request, Response $response, array $args) {
-    require_once("db.php");
 	require_once("nao_logado.php");
 	
 	//$name = $args['name'];

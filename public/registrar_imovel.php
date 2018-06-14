@@ -3,7 +3,13 @@
     session_start(); 
 }  
 
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
+
 $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $response, array $args) {
+	
+	include("db.php");
 	$imovel = json_decode($request->getBody(),true);
 	$id_resp = $_SESSION["id"];
 	$n_quartos = $imovel["n_quartos"];
