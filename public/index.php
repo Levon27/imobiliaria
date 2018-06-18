@@ -12,10 +12,10 @@ require_once ("login.php");
 require_once("registrar.php");
 require_once("login_conv.php");
 require_once("logout.php");
-require_once ("db.php");
 require_once("registrar_imovel.php");
 require_once("registrar_contrato.php");
 require_once("remove_imovel.php");
+require_once("remove_contrato.php");
 define('ROOT_PATH',dirname(__FILE__));
 
 $app->map(['GET','POST'],'/hello/', function (Request $request, Response $response, array $args) {
