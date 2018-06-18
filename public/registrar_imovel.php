@@ -10,7 +10,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
 $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $response, array $args) {
 	
 	include("db.php");
+	
 	$imovel = json_decode($request->getBody(),true);
+	
 	$id_resp = $_SESSION["id"];
 	$n_quartos = $imovel["n_quartos"];
 	$n_banheiros = $imovel["n_banheiros"];
