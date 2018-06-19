@@ -8,14 +8,14 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response, array $args) {
 	require("db.php");
+	$id_imovel = $args['id'];
 	
 	
+	$query = $pdo->prepare('SELECT * FROM imoveis WHERE id_imovel=?');
 	
-	$query = $pdo->prepare('');
+	$query->execute([$id_imovel]);
 	
-	$query->execute([]);
-	
-	
+	$imovel = $query->fetch(PDO::FETCH_ASSOC);
 	
 	return $response;
 });
