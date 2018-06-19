@@ -20,7 +20,7 @@ require_once("procura_imovel.php");
 define('ROOT_PATH',dirname(__FILE__));
 
 $app->map(['GET','POST'],'/hello/', function (Request $request, Response $response, array $args) {
-	require_once("nao_logado.php");
+	//require_once("nao_logado.php");
 	
 	//$name = $args['name'];
 	/*
