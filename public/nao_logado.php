@@ -7,7 +7,8 @@
 		}
 		
 		if (empty($_SESSION["id"])){
-			echo "usuario não logado";
+			//echo "usuario não logado";
+			session_destroy();
 			return false;
 		} else {
 			return true;

@@ -1,12 +1,13 @@
 <?php
-if(!isset($_SESSION)) { 
-    session_start(); 
-}  
+
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['DELETE'],'/imovel/{id}', function (Request $request, Response $response, array $args) {
+	if (!(logado())){
+		return $response->withStatus(403); //usuario nao logado
+	}
 	require("db.php");
 	
 	$id_imovel = $args['id'];

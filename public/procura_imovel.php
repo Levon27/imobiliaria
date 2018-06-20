@@ -1,5 +1,4 @@
 <?php
- 
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -17,7 +16,12 @@ $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response
 	
 	$query->execute([$id_imovel]);
 	
-	$imovel = $query->fetch(PDO::FETCH_ASSOC);
+	if ($imovel = $query->fetch(PDO::FETCH_ASSOC)){
+		return $response->withHeader(201);
+	} else {
+		return $response->withHeader(404);
+	}
+		
 	
 	return $response;
 });
@@ -42,10 +46,10 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}', function (Request $request, Respons
 	}
 	
 	if ($n==0){
-		echo "nenhum imovel encontrado";
+		return $response->withHeader(404);
 	}
 	
-	return $response;
+	return $response->withHeader(200);
 });
 
 $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function (Request $request, Response $response, array $args) {
@@ -70,10 +74,10 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function 
 	}
 	
 	if ($n==0){
-		echo "nenhum imovel encontrado";
+		return $response->withHeader(404);
 	}
 	
-	return $response;
+	return $response->withHeader(200);
 });
 
 ?>

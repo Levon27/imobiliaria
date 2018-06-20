@@ -52,7 +52,7 @@ $app->map(['POST'],'/registrar/', function (Request $request, Response $response
 	WHERE NOT EXISTS (SELECT email FROM autenticacao WHERE email='teste@example.com')
 	*/
 	
-	return $response;
+	return $response->withHeader(201);
 });
 
 

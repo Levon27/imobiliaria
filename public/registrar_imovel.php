@@ -26,5 +26,5 @@ $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $re
 	
 	echo "imovel registrado";
 	
-
+	return $response->withHeader(201);
 });
