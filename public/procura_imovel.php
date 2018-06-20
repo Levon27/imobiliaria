@@ -7,12 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 
-
-
 ---LEMBRETE: TROCAR FETCH_ASSOC FPOR FETCHALL EM ROTAS QUE RETORNAM MAIS DE UM IMOVEL------- 
-
-
-
 
 
 
@@ -33,7 +28,7 @@ $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response
 	$query->execute([$id_imovel]);
 	
 	if ($imovel = $query->fetch(PDO::FETCH_ASSOC)){
-		return $response->withStatus(200);
+		return $response->withJson($imovel,200);
 	} else {
 		return $response->withStatus(404);
 	}
@@ -45,26 +40,35 @@ $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response
 $app->map(['GET'],'/imovel/{tipo}/{cidade}', function (Request $request, Response $response, array $args) {
 	$n = 0;
 	require("db.php");
-	$id_imovel = $args['id'];
-
 	$cidade = $args['cidade'];
 	$cidade = str_replace("_"," ",$cidade);
 	$cidade = ucwords($cidade);
 	$tipo = $args['tipo'];
-
 	
 	//echo "cidade: $cidade";
 	
-
-	$query = $pdo->prepare('SELECT * FROM imoveis WHERE id_imovel=?');
+	$query = $pdo->prepare('SELECT * FROM imoveis WHERE cidade LIKE ? AND tipo LIKE ?');
+	$query->execute([$cidade,$tipo]);
 	
-	$query->execute([$id_imovel]);
+	/* ANTIGO
+	while ($data = $query->fetch(PDO::FETCH_ASSOC)){
+		
+		//echo json_encode($data);
+		$n++;
+		return $response->withStatus(200);
+	}
 	
-	$imovel = $query->fetch(PDO::FETCH_ASSOC);
+	if ($n==0){
+		echo "nao encontrado";
+		return $response->withStatus(404);
+	} */
 	
-	var_dump ($imovel);
-	
-	return $response;
+	if ($imoveis = $query->fetchAll()){
+		return $response->withJson($imoveis,200);
+		//echo json_encode($imoveis);
+	} else {
+		return $response->withStatus(404);
+	}
 });
 
 
@@ -83,7 +87,7 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function 
 	
 	$query = $pdo->prepare('SELECT * FROM imoveis WHERE cidade LIKE ? AND tipo LIKE ? AND valor_imovel BETWEEN ? AND ? AND area BETWEEN 0.8*? AND 1.2*? AND n_quartos >=?');
 	$query->execute([$cidade,$tipo,$min,$max,$area,$area,$dorm]);
-	
+	/* ANTIGO
 	while ($data = $query->fetch(PDO::FETCH_ASSOC)){
 		
 		echo json_encode($data);
@@ -93,9 +97,14 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function 
 	
 	if ($n==0){
 		return $response->withStatus(404);
+	} */
+	if ($imoveis = $query->fetchAll()){
+		return $response->withJson($imoveis,200);
+		//echo json_encode($imoveis);
+	} else {
+		return $response->withStatus(404);
 	}
 	
-	return $response->withStatus(200);
 });
 
 
