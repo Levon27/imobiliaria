@@ -2,7 +2,23 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+/*
 
+
+
+
+
+
+---LEMBRETE: TROCAR FETCH_ASSOC FPOR FETCHALL EM ROTAS QUE RETORNAM MAIS DE UM IMOVEL------- 
+
+
+
+
+
+
+
+
+*/
 $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response, array $args) use ($app) {
 	if (!(logado())){
 		return $response->withStatus(403); //usuario nao logado
@@ -17,9 +33,9 @@ $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response
 	$query->execute([$id_imovel]);
 	
 	if ($imovel = $query->fetch(PDO::FETCH_ASSOC)){
-		return $response->withHeader(201);
+		return $response->withStatus(200);
 	} else {
-		return $response->withHeader(404);
+		return $response->withStatus(404);
 	}
 		
 	
@@ -34,22 +50,23 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}', function (Request $request, Respons
 	$cidade = ucwords($cidade);
 	$tipo = $args['tipo'];
 	
-	echo "cidade: $cidade";
+	//echo "cidade: $cidade";
 	
 	$query = $pdo->prepare('SELECT * FROM imoveis WHERE cidade LIKE ? AND tipo LIKE ?');
 	$query->execute([$cidade,$tipo]);
 	
 	while ($data = $query->fetch(PDO::FETCH_ASSOC)){
 		
-		echo json_encode($data);
+		//echo json_encode($data);
 		$n++;
+		return $response->withStatus(200);
 	}
 	
 	if ($n==0){
-		return $response->withHeader(404);
+		return $response->withStatus(404);
 	}
 	
-	return $response->withHeader(200);
+	return $response->withStatus(200);
 });
 
 $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function (Request $request, Response $response, array $args) {
@@ -71,13 +88,14 @@ $app->map(['GET'],'/imovel/{tipo}/{cidade}/{min}/{max}/{area}/{dorm}', function 
 		
 		echo json_encode($data);
 		$n++;
+		return $response->withStatus(200);
 	}
 	
 	if ($n==0){
-		return $response->withHeader(404);
+		return $response->withStatus(404);
 	}
 	
-	return $response->withHeader(200);
+	return $response->withStatus(200);
 });
 
 ?>
