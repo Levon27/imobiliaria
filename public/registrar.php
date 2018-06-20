@@ -30,13 +30,12 @@ $app->map(['POST'],'/registrar/', function (Request $request, Response $response
 	$res = $query->fetch(PDO::FETCH_ASSOC);
 	
 	$id = $res["id_usuario"];
-	echo "id encontrado $id ";
+	//echo "id encontrado $id ";
 	
 	$query = $pdo->prepare('INSERT INTO cliente (nome_completo,cpf,id_usuario,rg,email_contato,telcontato) SELECT * FROM ( SELECT ?,?,?,?,?,?) AS temp WHERE NOT EXISTS (SELECT email_contato FROM cliente WHERE email_contato=?)');
-	//$query->execute([$nome,$cpf,$id,$rg,$email,$tel,$email]);
 	$query->execute([$nome,$cpf,$id,$rg,$email,$tel,$email]);
 	
-	echo "usuario criado";
+	//echo "usuario criado";
 	
 	
 	

@@ -24,7 +24,7 @@ $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $re
 	$query  = $pdo->prepare('INSERT INTO imoveis (id_responsavel,n_quartos,n_banheiros,area,cep,rua,bairro,cidade) VALUES (?,?,?,?,?,?,?,?)');
 	$query->execute([$id_resp,$n_quartos,$n_banheiros,$area,$cep,$rua,$bairro,$cidade]);
 	
-	echo "imovel registrado";
+	//echo "imovel registrado";
 	
 	return $response->withHeader(201);
 });

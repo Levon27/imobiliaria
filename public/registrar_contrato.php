@@ -18,7 +18,8 @@ $app->map(['POST'],'/registrar/contrato', function (Request $request, Response $
 	$query = $pdo->prepare('INSERT INTO contrato (id_proprietario,id_inquilino,valor,id_imovel) VALUES (?,?,?,?)');
 	$query->execute([$id_prop,$id_inq,$valor,$id_imovel]);
 	
-	echo "imovel registrado";
+	//echo "contrato registrado";
+	return $response->withStatus(201);
 });
 
 ?>

@@ -15,8 +15,8 @@ $app->map(['DELETE'],'/contrato/{id}', function (Request $request, Response $res
 	$query = $pdo->prepare('DELETE FROM contrato WHERE id_contrato = ?');
 	$query->execute([$id_contrato]);
 	
-	echo "deletar contrato $id_contrato";
+	//echo "deletar contrato $id_contrato";
 	
-	return $response;
+	return $response->withStatus(200);
 });
 ?>
