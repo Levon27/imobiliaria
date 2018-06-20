@@ -6,13 +6,17 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 
-$app->map(['POST'],'/logout/', function (Request $request, Response $response, array $args) {
+$app->map(['POST'],'/logout', function (Request $request, Response $response, array $args) {
 	//var_dump ($_SESSION);
-	require_once("nao_logado.php");
+	if (logado()){
+		echo "deslogando...";
+		session_destroy();		
+	} else {
+		echo "ja esta deslogado";
+	}
 
-	session_destroy();
+	
 	//var_dump ($_SESSION["id"]);
-	echo "usuario deslogado";
 	return $response;
 });
 ?>

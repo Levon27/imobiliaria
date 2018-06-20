@@ -38,21 +38,9 @@ $app->map(['POST'],'/registrar/', function (Request $request, Response $response
 	
 	echo "usuario criado";
 	
-	/*
-	INSERT INTO cliente (nome_completo,cpf,id_usuario,rg,email_contato,telcontato) 
-	SELECT * FROM ( SELECT 'Clodovaldo','1234567890','17','123456789','clodovaldo@yahoo.com.br
-	','969692424') AS temp 
-	WHERE NOT EXISTS (SELECT email_contato FROM cliente WHERE email_contato='clodovaldo@yahoo.com.br
-	*/
 	
 	
-	/*
-	INSERT INTO autenticacao (nome,email,senha,tipo) 
-	SELECT * FROM ( SELECT 'teste','teste@example.com','senhateste','inquilino') AS temp 
-	WHERE NOT EXISTS (SELECT email FROM autenticacao WHERE email='teste@example.com')
-	*/
-	
-	return $response;
+	return $response->withHeader(201);
 });
 
 
