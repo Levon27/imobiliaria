@@ -1,7 +1,18 @@
 <?php
-	if (empty($_SESSION["id"])){
+	
+	function logado(){
+		// lembrete:  ---DESTRUIR SESSION SE NAO ESTA LOGADO----
+		if(!isset($_SESSION)) { 
+			session_start(); 
+		}
 		
-		echo "usuario não logado";
-		$app->redirect('/hello/');
+		if (empty($_SESSION["id"])){
+			echo "usuario não logado";
+			return false;
+		} else {
+			return true;
+		}
+		
+		
 	}
 ?>
