@@ -39,7 +39,7 @@ $app->map(['POST'],'/registrar/', function (Request $request, Response $response
 	
 	
 	
-	return $response->withHeader(201);
+	return $response->withStatus(201);
 });
 
 

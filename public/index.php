@@ -18,6 +18,7 @@ require_once("remove_imovel.php");
 require_once("remove_contrato.php");
 require_once("procura_imovel.php");
 require_once("nao_logado.php");
+require_once("procura_contrato.php");
 define('ROOT_PATH',dirname(__FILE__));
 
 $app->map(['GET','POST'],'/hello', function (Request $request, Response $response, array $args) {

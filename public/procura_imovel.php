@@ -2,18 +2,7 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-/*
 
-
-
-
----LEMBRETE: TROCAR FETCH_ASSOC FPOR FETCHALL EM ROTAS QUE RETORNAM MAIS DE UM IMOVEL------- 
-
-
-
-
-
-*/
 $app->map(['GET'],'/imovel/{id}', function (Request $request, Response $response, array $args) use ($app) {
 	if (!(logado())){
 		return $response->withStatus(403); //usuario nao logado
