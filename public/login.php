@@ -18,7 +18,7 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 	$auth = json_decode($request->getBody(),true);
 	$login = $auth["login"];
 	$senha = $auth["pass"];
-	echo "$login  : $senha ";
+	//echo "$login  : $senha ";
 	
 	$query = $pdo->prepare('SELECT * FROM autenticacao WHERE email=? AND senha=?');
 	$query->execute([$login,$senha]);

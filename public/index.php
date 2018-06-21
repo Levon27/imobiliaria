@@ -24,6 +24,7 @@ require_once("procura_contrato.php");
 require_once("altera_imovel.php");
 require_once("altera_contrato.php");
 require_once("funcao_enviar_email.php");
+require_once("envia_reclamacao.php");
 define('ROOT_PATH',dirname(__FILE__));
 
 $app->map(['GET','POST'],'/hello', function (Request $request, Response $response, array $args) {
@@ -81,13 +82,14 @@ $app->map(['GET','POST'],'/hello', function (Request $request, Response $respons
 	} catch (Exception $e) {
 		echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 	}
-	*/
+	
 	$email = 'chahestian@hotmail.com';
 	$nome = 'Levon';
 	$reclamador = 'João';
 	$mensagem = 'Rato entalado na privada';
 	$endereco = 'Av. Paulista, 666';
 	enviar_reclamacao($email,$nome,$mensagem,$reclamador,$endereco);
+	*/
 	return $response;
 	
 	echo " não deveria chegar aqui seu guei";

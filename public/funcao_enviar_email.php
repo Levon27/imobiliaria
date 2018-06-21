@@ -29,7 +29,7 @@ function enviar_reclamacao($email,$nome,$mensagem,$reclamador,$endereco){
 			$mail->Body    = 
 			"<p> Ola, $nome. </p>
 			<p> O inquilino $reclamador fez uma reclamacao com respeito ao seu imovel em $endereco : </p>
-			<p> 	$mensagem </p>
+			<p> 	" $mensagem  "</p>
 			<p> Esperamos que resolva o problema. </p> 
 			<p> iMob, a imobiliaria do futuro. </p>";
 			
