@@ -12,8 +12,12 @@ $app->map(['DELETE'],'/contrato/{id}', function (Request $request, Response $res
 	}
 	$id_contrato = $args['id'];
 	
+	$query = $pdo->prepare('UPDATE imoveis SET alugado = 0 WHERE id_imovel=(SELECT contrato.id_imovel FROM contrato WHERE id_contrato=?)');
+	$query->execute([$id_contrato]);
+	
 	$query = $pdo->prepare('DELETE FROM contrato WHERE id_contrato = ?');
 	$query->execute([$id_contrato]);
+	
 	
 	//echo "deletar contrato $id_contrato";
 	

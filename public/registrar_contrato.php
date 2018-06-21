@@ -17,10 +17,11 @@ $app->map(['POST'],'/registrar/contrato', function (Request $request, Response $
 	$id_inq = $_SESSION["id"];
 	$id_imovel = $contrato["id_imovel"];
 	
-	if ($_SESSION['tipo']=='inquilino')
 	$query = $pdo->prepare('INSERT INTO contrato (id_proprietario,id_inquilino,valor,id_imovel) VALUES (?,?,(SELECT valor_imovel FROM imoveis WHERE id_imovel=?),?)');
 	$query->execute([$id_prop,$id_inq,$id_imovel,$id_imovel]);
 	
+	$query = $pdo->prepare('UPDATE imoveis SET alugado = 1 WHERE id_imovel=?');
+	$query->execute([$id_imovel]);
 	//echo "contrato registrado";
 	return $response->withStatus(201);
 });
