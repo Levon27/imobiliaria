@@ -19,6 +19,7 @@ require_once("remove_contrato.php");
 require_once("procura_imovel.php");
 require_once("nao_logado.php");
 require_once("procura_contrato.php");
+require_once("altera_imovel.php");
 define('ROOT_PATH',dirname(__FILE__));
 
 $app->map(['GET','POST'],'/hello', function (Request $request, Response $response, array $args) {
@@ -33,16 +34,19 @@ $app->map(['GET','POST'],'/hello', function (Request $request, Response $respons
 	$response->getBody()->write("$texto");
 	*/
 	
-	/*
+	
 	$id = 2;
 	$stmt = $pdo->prepare('SELECT * FROM autenticacao WHERE id_usuario=?');
 	$stmt->execute([$id]);
-	while ($data = $stmt->fetch(PDO::FETCH_ASSOC)){
+	if ($data = $stmt->fetchAll(PDO::FETCH_ASSOC)){
 		echo json_encode($data);
 	}
 	 
-	*/
-	echo "guei";
+	
+	
+	
+	
+	
 		
 	
 	return $response;
