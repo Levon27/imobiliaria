@@ -26,7 +26,8 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 	
 	if ($data = $query->fetch(PDO::FETCH_ASSOC)){
 		$_SESSION["id"]  = $data["id_usuario"]; //usuario encontrado
-		$_SSESION["tipo"] = $data["tipo"] //senhorio ou inquilino
+		$_SESSION["tipo"] = $data["tipo"]; //senhorio ou inquilino
+		echo $_SESSION["tipo"];
 	} else {
 		return $response->withStatus(401); //login ou senha incorretos
 	}
