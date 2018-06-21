@@ -12,7 +12,7 @@ $app->map(['GET'],'/contrato/{id}', function (Request $request, Response $respon
 	$id_contrato = $args['id'];
 	
 	
-	$query = $pdo->prepare('SELECT * FROM imoveis WHERE id_imovel=?');
+	$query = $pdo->prepare('SELECT * FROM contrato WHERE id_contrato=?');
 	
 	$query->execute([$id_contrato]);
 	
