@@ -10,7 +10,7 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 	
 	
 	if (!(empty($_SESSION["id"]))){
-		echo "ja logou";
+		//echo "ja logou";
 		return $response->withStatus(200); //usuario ja logado
 		
 	}
@@ -26,6 +26,7 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 	
 	if ($data = $query->fetch(PDO::FETCH_ASSOC)){
 		$_SESSION["id"]  = $data["id_usuario"]; //usuario encontrado
+		$_SSESION["tipo"] = $data["tipo"] //senhorio ou inquilino
 	} else {
 		return $response->withStatus(401); //login ou senha incorretos
 	}
