@@ -7,7 +7,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 
-$app->map(['POST'],'/registrar/', function (Request $request, Response $response, array $args) {
+$app->map(['POST'],'/registrar', function (Request $request, Response $response, array $args) {
     require_once("db.php");
 	$registro = json_decode($request->getBody(),true);
 	

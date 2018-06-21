@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->map(['POST'],'/registrar/contrato', function (Request $request, Response $response, array $args) {
+$app->map(['POST'],'/contrato', function (Request $request, Response $response, array $args) {
 	if (!(logado())){
 		return $response->withStatus(403); //usuario nao logado
 	}
