@@ -3,7 +3,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 
-$app->map(['POST'],'/registrar/imovel', function (Request $request, Response $response, array $args) {
+$app->map(['POST'],'/imovel', function (Request $request, Response $response, array $args) {
 	if (!(logado())){
 		return $response->withStatus(403); //usuario nao logado
 	}
@@ -13,6 +13,7 @@ $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $re
 	$imovel = json_decode($request->getBody(),true);
 	
 	$id_resp = $_SESSION["id"];
+	
 	$n_quartos = $imovel["n_quartos"];
 	$n_banheiros = $imovel["n_banheiros"];
 	$area = $imovel["area"];
@@ -20,9 +21,10 @@ $app->map(['POST'],'/registrar/imovel', function (Request $request, Response $re
 	$rua = $imovel["rua"];
 	$bairro = $imovel["bairro"];
 	$cidade = $imovel["cidade"];
+	$valor_imovel = $imovel["valor_imovel"];
 	
-	$query  = $pdo->prepare('INSERT INTO imoveis (id_responsavel,n_quartos,n_banheiros,area,cep,rua,bairro,cidade) VALUES (?,?,?,?,?,?,?,?)');
-	$query->execute([$id_resp,$n_quartos,$n_banheiros,$area,$cep,$rua,$bairro,$cidade]);
+	$query  = $pdo->prepare('INSERT INTO imoveis (id_responsavel,n_quartos,n_banheiros,valor_imovel,area,cep,rua,bairro,cidade) VALUES (?,?,?,?,?,?,?,?,?)');
+	$query->execute([$id_resp,$n_quartos,$n_banheiros,$valor_imovel,$area,$cep,$rua,$bairro,$cidade]);
 	
 	//echo "imovel registrado";
 	

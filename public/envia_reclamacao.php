@@ -9,14 +9,17 @@ $app->map(['POST'],'/reclamar', function (Request $request, Response $response, 
 		return $response->withStatus(403); //usuario nao logado
 	}
 	require("db.php");
-	
+	$campos = array ('id_contrato','mensagem');
 	$reclamacao = json_decode($request->getBody(),true);
 	
 	//recuperar dados do cliente reclamador
 	$id = $_SESSION['id'];
+	
 	$id_contrato = $reclamacao['id_contrato'];
 	$mensagem = $reclamacao['mensagem'];
-	echo "$id";
+	//echo "$id";
+	
+	return $response->withStatus(400);
 	
 	$query = $pdo->prepare('SELECT * FROM cliente WHERE id_usuario=?');
 	$query->execute([$id]);
