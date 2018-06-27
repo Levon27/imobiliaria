@@ -1,9 +1,9 @@
 <?php
 
-	$host = '127.0.0.1';
+	$host = '177.33.177.209:420';
 	$db   = 'imobiliaria';
-	$user = 'root';
-	$pass = '';
+	$user = 'phpmyadmin';
+	$pass = 'thiago123';
 	$charset = 'utf8mb4';
 	
 	$dsn = "mysql:host=$host;dbname=$db;charset=$charset";

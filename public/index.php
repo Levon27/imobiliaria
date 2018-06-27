@@ -92,6 +92,8 @@ $app->map(['GET','POST'],'/hello', function (Request $request, Response $respons
 	$endereco = 'Av. Paulista, 666';
 	enviar_reclamacao($email,$nome,$mensagem,$reclamador,$endereco);
 	*/
+	
+	
 	return $response;
 	
 	echo " não deveria chegar aqui seu guei";
