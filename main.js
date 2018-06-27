@@ -6,11 +6,12 @@ $(document).ready(function () {
 
     });   
 
-
+    /*Botão de buscar casas*/
     $("#btn-buscar").click(function () {
         $('#jb-res').show();
         $('#jb-det').hide();
-
+        
+        // Exemplo de resposta com mais de uma casa - funciona pra uma casa só também
         var response = `[{
 "id_imovel":"9",
 "id_responsavel":"1",
@@ -42,15 +43,7 @@ $(document).ready(function () {
     
     response = $.parseJSON(response);
     console.log(response);
-    
-    /*$('<li data-target="#carousel-example-generic" data-slide-to="2"></li>').appendTo('.carousel-indicators');
-    $('.item').first().addClass('active');
-    $('.carousel-indicators > li').first().addClass('active');
-    $('#carousel-example-generic').carousel();*/
-        
-
-    // convert string to JSON
-
+    //função que adiciona JSON na tabela lá
     $(function() {
         $.each(response, function(i, item) {
             $("<tr id='anuncio1'><td>"+item.rua+"</td><td><div class='item'><img src='../others/casa1.jpg'><div class='carousel-caption'></div></div></td><td>"+item.valor_imovel+"</td></tr>").appendTo("tbody");
