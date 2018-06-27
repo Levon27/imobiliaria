@@ -43,12 +43,18 @@ $(document).ready(function () {
     
     response = $.parseJSON(response);
     console.log(response);
+	
+	
     //função que adiciona JSON na tabela lá
+	
+	/*
     $(function() {
         $.each(response, function(i, item) {
             $("<tr id='anuncio1'><td>"+item.rua+"</td><td><div class='item'><img src='../others/casa1.jpg'><div class='carousel-caption'></div></div></td><td>"+item.valor_imovel+"</td></tr>").appendTo("tbody");
         });
     });
+	
+	*/
 });
 
 $("#btn-lista").click(function () {

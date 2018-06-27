@@ -1,7 +1,7 @@
 <?php
-if(!isset($_SESSION)) { 
+//if(!isset($_SESSION)) { 
     session_start(); 
-} 
+//}
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
@@ -27,7 +27,7 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 	if ($data = $query->fetch(PDO::FETCH_ASSOC)){
 		$_SESSION["id"]  = $data["id_usuario"]; //usuario encontrado
 		$_SESSION["tipo"] = $data["tipo"]; //senhorio ou inquilino
-		echo $_SESSION["tipo"];
+		echo $_SESSION["id"];
 	} else {
 		//return $response->withJson($request->getBody(),401); //login ou senha incorretos
 		return $response->withStatus(401); //login ou senha incorretos
