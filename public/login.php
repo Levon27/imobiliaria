@@ -29,6 +29,7 @@ $app->map(['POST'],'/login', function (Request $request, Response $response, arr
 		$_SESSION["tipo"] = $data["tipo"]; //senhorio ou inquilino
 		echo $_SESSION["tipo"];
 	} else {
+		//return $response->withJson($request->getBody(),401); //login ou senha incorretos
 		return $response->withStatus(401); //login ou senha incorretos
 	}
 	

@@ -9,6 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../vendor/autoload.php';
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
 $app = new \Slim\App;
 require_once("login.php");
 require_once("registrar.php");
