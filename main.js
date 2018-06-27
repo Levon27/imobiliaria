@@ -43,14 +43,23 @@ $(document).ready(function () {
     
     response = $.parseJSON(response);
     console.log(response);
+<<<<<<< HEAD
 	
 	
+=======
+    $("#table_id").find("tr:gt(0)").remove();
+    $(".info").empty();
+>>>>>>> def2469693003b2d668f0950e300b9452d260c9c
     //função que adiciona JSON na tabela lá
 	
 	/*
     $(function() {
         $.each(response, function(i, item) {
-            $("<tr id='anuncio1'><td>"+item.rua+"</td><td><div class='item'><img src='../others/casa1.jpg'><div class='carousel-caption'></div></div></td><td>"+item.valor_imovel+"</td></tr>").appendTo("tbody");
+            $("<tr id='anuncio "+i+"' class='img-car'><td>"+item.rua+"</td><td><div class='item'><img src='../others/casa1.jpg'><div class='carousel-caption'></div></div></td><td>"+item.valor_imovel+"</td></tr>").appendTo(".dinamico");
+            
+           $("<div class='card-body' id='"+i+"'><h5 class='card-title'>ID - "+item.id_imovel+"</h5><p class='card-text'>"+item.tipo+"</p><p class='card-text'>"+item.rua+"</p><p class='card-text'>"+item.cidade+"</p><p class='card-text'>"+item.valor_imovel+"</p></div>").appendTo(".info");
+            
+            $('#'+i).hide();
         });
     });
 	
@@ -116,9 +125,12 @@ $("#nav-senhorios").click(function () {
     $("#inquilinos").hide();
 })
 
-$(".img-car").click(function () {
+$("#table_id").on("click", ".img-car", function () {
     $('#jb-res').hide();
     $('#jb-det').show();
+    var row = $(this).index();
+    console.log(row);
+    $('#'+row).show();
 })
 
 });
