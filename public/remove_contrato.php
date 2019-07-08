@@ -8,7 +8,7 @@ $app->map(['DELETE'],'/contrato/{id}', function (Request $request, Response $res
 	require("db.php");
 	
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	$id_contrato = $args['id'];
 	

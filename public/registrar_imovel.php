@@ -5,7 +5,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['POST'],'/imovel', function (Request $request, Response $response, array $args) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	
 	include("db.php");

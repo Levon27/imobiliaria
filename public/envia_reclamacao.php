@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 
 $app->map(['POST'],'/reclamar', function (Request $request, Response $response, array $args) use ($app) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	require("db.php");
 	$campos = array ('id_contrato','mensagem');

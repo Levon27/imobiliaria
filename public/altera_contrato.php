@@ -4,7 +4,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['PUT'],'/contrato/{id}', function (Request $request, Response $response, array $args) use ($app) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	
 	$campos_bd = array ('id_proprietario','id_inquilino','valor','id_imovel');

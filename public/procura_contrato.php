@@ -5,7 +5,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['GET'],'/contrato/{id}', function (Request $request, Response $response, array $args) use ($app) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	
 	require("db.php");

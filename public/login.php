@@ -1,12 +1,14 @@
 <?php
+
 if(!isset($_SESSION)) { 
     session_start(); 
 } 
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['POST'],'/login', function (Request $request, Response $response, array $args) {
-	include("db.php");
+	require("db.php");
 	
 	
 	if (!(empty($_SESSION["id"]))){

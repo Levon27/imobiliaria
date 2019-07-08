@@ -4,7 +4,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['POST'],'/contrato', function (Request $request, Response $response, array $args) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	if (!($_SESSION['tipo']=='inquilino'))
 		return $response->withStatus(403);

@@ -6,7 +6,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->map(['DELETE'],'/imovel/{id}', function (Request $request, Response $response, array $args) {
 	if (!(logado())){
-		return $response->withStatus(403); //usuario nao logado
+		return $response->withStatus(401); //usuario nao logado
 	}
 	require("db.php");
 	
@@ -15,7 +15,6 @@ $app->map(['DELETE'],'/imovel/{id}', function (Request $request, Response $respo
 	$query = $pdo->prepare('DELETE FROM imoveis WHERE id_imovel = ?');
 	$query->execute([$id_imovel]);
 	
-	//echo "deletar imovel $id_imovel";
 	
 	return $response->withStatus(200);
 });
